@@ -26,7 +26,7 @@ val reader = MidProseABReader(MidDiplomaticEdition)
 
 
 ```tut
-reader.editionTypes
+reader.recognizedTypes
 ```
 
 The reader can create a new edition of a citable node
@@ -37,7 +37,7 @@ import edu.holycross.shot.cite._
 val xml = "<div n=\"1\"><ab n=\"1\">Text 1<del>.1</del><add>.2</add> version</ab></div>"
 val urn =CtsUrn("urn:cts:mid:unittests.1.xml:1.1")
 
-reader.editedNode(xml, urn)
+reader.editedNodeCex(xml, urn)
 
 ```
 
@@ -49,7 +49,7 @@ val badXml = "<div n=\"1\"><ab n=\"1\"><watermark>Agamemnon</watermark></ab></di
 val urn2 =CtsUrn("urn:cts:mid:unittests.2.xml:1.1")
 
 try {
-  reader.editedNode(badXml, urn2)
+  reader.editedNodeCex(badXml, urn2)
 } catch {
   case e: Exception => println("Failed to create diplomatic edition: " + e.getMessage)
 }
