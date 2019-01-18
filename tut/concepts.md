@@ -10,10 +10,9 @@ The library introduces two key concepts related to the contents of these edition
 
 ## `MidMarkupReader`
 
-Classes implementing the `MidMarkupReader` are able to convert multivalent documents into one or more individual editions.
+Classes implementing the `MidMarkupReader` trait are able to convert multivalent documents into one or more individual editions.
 
-Example:  objects of the `MidProseABReader` class can read TEI XML cited at two levels organized with TEI `div` and `ab` elements.  It is created with an `MidEditionType`.
-
+*Example*:  objects of the `MidProseABReader` class can read TEI XML with two levels of citation organized with TEI `div` and `ab` elements.  You create an `MidProseABReader` with a parameter identifying the type of edition you want to work with (an instance of a `MidEditionType`)
 
 
 ```tut
@@ -23,14 +22,14 @@ val reader = MidProseABReader(MidDiplomaticEdition)
 
 
 
-`MidMarkupReader`s are required to identify all the types of editions they recognize.  For the version of `MidProseABReader`, that is only the `MidDiplomaticEdition` type.
+`MidMarkupReader`s are required to identify *all* the types of editions they recognize.  For the version of `MidProseABReader` used in this tutorial, that is only the `MidDiplomaticEdition` type.
 
 
 ```tut
 reader.editionTypes
 ```
 
-The reader can create a new edition from a citable node:
+The reader can create a new edition of a citable node
 
 ```tut
 import edu.holycross.shot.cite._
