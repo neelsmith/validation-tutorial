@@ -29,7 +29,7 @@ val reader = MidProseABReader(MidDiplomaticEdition)
 reader.recognizedTypes
 ```
 
-The reader can create a new edition of a citable node
+The reader can create a new edition of a citable node as a string in CEX format.
 
 ```tut
 import edu.holycross.shot.cite._
@@ -37,7 +37,7 @@ import edu.holycross.shot.cite._
 val xml = "<div n=\"1\"><ab n=\"1\">Text 1<del>.1</del><add>.2</add> version</ab></div>"
 val urn =CtsUrn("urn:cts:mid:unittests.1.xml:1.1")
 
-reader.editedNodeCex(xml, urn)
+reader.editedNodeCex(urn, xml)
 
 ```
 
@@ -49,7 +49,7 @@ val badXml = "<div n=\"1\"><ab n=\"1\"><watermark>Agamemnon</watermark></ab></di
 val urn2 =CtsUrn("urn:cts:mid:unittests.2.xml:1.1")
 
 try {
-  reader.editedNodeCex(badXml, urn2)
+  reader.editedNodeCex(urn2, badXml)
 } catch {
   case e: Exception => println("Failed to create diplomatic edition: " + e.getMessage)
 }
@@ -71,7 +71,7 @@ Latin23Alphabet.tokenCategories
 
 It implements the required function determining if a code point is allowed or not.
 
-```
+```tut
 
 val a = 'a'.toInt
 val alpha =  'α'.toInt
@@ -83,7 +83,7 @@ Latin23Alphabet.validCP(alpha)
 
 It also implements the required function tokenizing a `CitableNode` into a Vector of tokens.
 
-```
+```tut
 import edu.holycross.shot.ohco2._
 
 val n = CitableNode(CtsUrn("urn:cts:omar:stoa0179.stoa001.omar:2.8.4"), "creatus Sp. Lucretius consul,")
